@@ -6,36 +6,33 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import Button from "../style/component/Button";
+import Button from "../../style/component/Button";
 
 const Header = () => {
   const menulist = [
-    "A",
-    "B",
+    "옷",
+    "신발",
     "C",
     "D",
-    "A",
-    "B",
-    "C",
-    "A",
-    "B",
-    "C",
-    "D",
-    "A",
-    "B",
-    "C",
-    "A",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
   ];
 
-  const [isFocused, setIsFocused] = useState(false);
-  const [isValid, setIsValid] = useState(false);
+  const [isfocused, setIsFocused] = useState("");
+  const [isvalid, setIsValid] = useState("");
 
   const handleFocus = () => {
-    setIsFocused(true);
+    setIsFocused("focus");
   };
 
   const handleBlur = () => {
-    setIsFocused(false);
+    setIsFocused("");
   };
 
   const handleChange = (event) => {
@@ -44,7 +41,7 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <HeaderItem right={isFocused || isValid ? "2rem" : ""}>
+      <HeaderItem right={isfocused || isvalid ? "2rem" : ""}>
         <div className="high">
           <div></div>
           <Logo>
@@ -66,15 +63,15 @@ const Header = () => {
         <div className="low">
           <div></div>
           <div className="navbar">
-            {menulist.map((it) => (
-              <Button>{it}</Button>
+            {menulist.map((it, index) => (
+              <Button key={index}>{it}</Button>
             ))}
           </div>
           <div className="search">
             <label
-              htmlForfor="search_input"
-              isFocused={isFocused}
-              isValid={isValid}
+              htmlFor="search_input"
+              isfocused={isfocused}
+              isvalid={isvalid}
             >
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
@@ -83,9 +80,10 @@ const Header = () => {
               <input
                 type="text"
                 id="search_input"
-                placeholder="제품 검색"
+                className={isfocused ? "focus" : ""}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
+                placeholder="제품 검색"
                 onChange={handleChange}
                 required
               />
@@ -191,7 +189,7 @@ const HeaderItem = styled.div.attrs((props) => ({
             }
           }
           &:valid {
-            border-bottom-color: black;
+            border-bottom: 1px solid black;
           }
         }
       }

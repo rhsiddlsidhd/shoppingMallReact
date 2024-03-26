@@ -21,7 +21,7 @@ const Container = styled.section`
 const Content = styled.div`
   width: 90%;
   height: 90%;
-  border: 1px solid black;
+  border: 4px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;

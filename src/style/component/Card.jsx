@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const Card = ({ children, ...rest }) => {
-  console.log("children", children);
-  console.log(rest);
   return (
     <Polaroid {...rest}>
       <CardImg {...rest}></CardImg>

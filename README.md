@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+### 🎉 2024-03-25 ~ 2024-03-29 웹 쇼핑몰
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📄 소개
 
-## Available Scripts
+JSON Server Web ShoppingMall
 
-In the project directory, you can run:
+## 🔥 프로젝트 목표
 
-### `npm start`
+https://reactrouter.com/en/main
+React Router를 사용하여 다양한 라우팅 기능을 이해하고 활용합니다
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🔧 기술스택
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- HTML
+- CSS
+- Javascript
+- React
 
-### `npm test`
+## 📌 현재 개발 상태
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **24-03-25** 폴더 구조 및 프로젝트에 반복하여 사용 될 컴포넌트 앞서서 UI를 구현
+- **24-03-26** Json-server 데이터 입력 및 BrowserRouter 대신 v6 버전에서 권장하는 createbrowerRouter 사용하여 데이터 불러오기
 
-### `npm run build`
+## 📝 앞으로 할 개선 해야 할 방향
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🥅 Trouble shooting
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-
 
-### `npm run eject`
+## 💬 기타
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- https://reactrouter.com/en/main/routers/picking-a-router
+- https://reactrouter.com/en/main/route/error-element#bubbling
+- 기존 라우터와 다르게 데이터 라우터인 createBrowserRouter는 loder를 제공하여 렌더링되기 전에 경로 요소에 데이터를 전달하는 기능을 정의할 수 있다. 제공된 데이터는 useLoaderData 또는 useRouteLoaderData를 통해 사용할 수 있다. 해당 router를 객체로 정의하면서 최상위 root에 위치에 errorElement를 만들어 로더 , 액션 또는 구성 요소 렌더링에서 예외가 발생하면 일반 렌더링 경로( ) 대신 errorElement 경로로 렌더링 되어 오류를 통합적으로 관리할 수 있다.

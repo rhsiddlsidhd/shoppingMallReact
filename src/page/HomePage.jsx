@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ContentContainer from "../component/ContentContainer";
+import ContentContainer from "../style/component/ContentContainer";
 import Card from "../style/component/Card";
 
 const Homepage = () => {
@@ -9,41 +9,25 @@ const Homepage = () => {
     "B",
     "C",
     "D",
-    "A",
-    "B",
-    "C",
-    "A",
-    "B",
-    "C",
-    "D",
-    "A",
-    "B",
-    "C",
-    "A",
+    "va",
     "A",
     "B",
     "C",
     "D",
-    "A",
-    "B",
-    "C",
+    "va",
     "A",
     "B",
     "C",
     "D",
-    "A",
-    "B",
-    "C",
-    "A",
-    "1",
+    "va",
   ];
 
   return (
     <ContentContainer>
       <NavPreview>NavPreview</NavPreview>
       <CardBox>
-        {card.map((it) => (
-          <Card margin="1.5rem" key={it}></Card>
+        {card.map((it, index) => (
+          <Card margin="1.5rem" key={index}></Card>
         ))}
       </CardBox>
     </ContentContainer>

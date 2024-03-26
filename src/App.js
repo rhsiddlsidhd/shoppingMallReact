@@ -1,31 +1,26 @@
-import styled from "styled-components";
+import { Outlet, useLoaderData } from "react-router-dom";
 import "./App.css";
 
-import Header from "./component/Header";
-import { Routes, Route } from "react-router-dom";
-import Homepage from "./page/HomePage";
-import LoginPage from "./page/LoginPage";
-import ProductPage from "./page/ProductPage";
+import Header from "./component/common/Header";
 
 function App() {
+  const albums = useLoaderData();
+
+  // useEffect(() => {
+  //   const getClothsData = async () => {
+  //     const data = await fetchClothesData();
+  //     console.log(data);
+  //   };
+
+  //   getClothsData();
+  // }, []);
+
   return (
     <div className="App">
       <Header />
-      <Routes>
-        <Route path="/" element={<Homepage />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/product/:id" element={<ProductPage />}></Route>
-      </Routes>
+      <Outlet />
     </div>
   );
 }
 
 export default App;
-
-const Center = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
