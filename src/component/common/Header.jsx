@@ -4,11 +4,16 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled, { css } from "styled-components";
 import Button from "../../style/component/Button";
+import { useNavigate } from "react-router-dom";
+import { GetDispatchDataContext, GetStateDataContext } from "../../App";
 
 const Header = () => {
+  const { authenticate } = useContext(GetDispatchDataContext);
+  const setAuthenticate = useContext(GetStateDataContext);
+
   const menulist = [
     "옷",
     "신발",
@@ -26,6 +31,11 @@ const Header = () => {
 
   const [isfocused, setIsFocused] = useState("");
   const [isvalid, setIsValid] = useState("");
+  const [filter, setFilter] = useState("");
+  // filter랑 카드아이템 타일트과 일치하는것만 보여주면 끝
+  console.log(filter);
+
+  const navigate = useNavigate();
 
   const handleFocus = () => {
     setIsFocused("focus");
@@ -36,42 +46,80 @@ const Header = () => {
   };
 
   const handleChange = (event) => {
+    setFilter(event.target.value);
     setIsValid(event.target.value !== "");
+  };
+
+  const navigateLoginPage = () => {
+    navigate("/login");
+  };
+
+  const navigateHome = () => {
+    navigate("/");
+  };
+
+  const logout = () => {
+    if (window.confirm("로그아웃 하시겠습니까?")) {
+      setAuthenticate(false);
+    } else {
+      setAuthenticate(true);
+    }
   };
 
   return (
     <HeaderContainer>
-      <HeaderItem right={isfocused || isvalid ? "2rem" : ""}>
+      <HeaderItem $right={isfocused || isvalid ? "2rem" : ""}>
         <div className="high">
           <div></div>
           <Logo>
             <img
               src="https://png.pngtree.com/element_our/20190528/ourmid/pngtree-black-logo-icon-image_1130370.jpg"
               alt="이미지"
+              onClick={navigateHome}
             />
           </Logo>
           <PrivateMenu>
-            <div>
-              <FontAwesomeIcon icon={faUser} />
-              <p style={{ display: "inline", marginLeft: "1rem" }}>로그인</p>
-            </div>
-            <div className="menu_bar">
+            {authenticate === true ? (
+              <User onClick={logout}>
+                <FontAwesomeIcon icon={faUser} className="user_icon" />
+                <div
+                  className="user_text"
+                  style={{ display: "inline", marginLeft: "1rem" }}
+                >
+                  로그아웃
+                </div>
+              </User>
+            ) : (
+              <User onClick={navigateLoginPage}>
+                <FontAwesomeIcon icon={faUser} className="user_icon" />
+                <div
+                  className="user_text"
+                  style={{ display: "inline", marginLeft: "1rem" }}
+                >
+                  로그인
+                </div>
+              </User>
+            )}
+
+            <MenuBar>
               <FontAwesomeIcon icon={faBars} className="bar" />
-            </div>
+            </MenuBar>
           </PrivateMenu>
         </div>
         <div className="low">
           <div></div>
           <div className="navbar">
             {menulist.map((it, index) => (
-              <Button key={index}>{it}</Button>
+              <Button key={index} $margin="0.3rem">
+                {it}
+              </Button>
             ))}
           </div>
           <div className="search">
             <label
               htmlFor="search_input"
               isfocused={isfocused}
-              isvalid={isvalid}
+              isvalid={isvalid.toString()}
             >
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
@@ -84,7 +132,7 @@ const Header = () => {
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 placeholder="제품 검색"
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
                 required
               />
             </label>
@@ -110,7 +158,7 @@ const HeaderContainer = styled.header`
 
 const HeaderItem = styled.div.attrs((props) => ({
   ...props,
-  right: props.right || "",
+  $right: props.$right || "",
 }))`
   width: 90%;
   height: 100%;
@@ -166,7 +214,8 @@ const HeaderItem = styled.div.attrs((props) => ({
           position: absolute;
           left: 0;
           font-size: 1.5rem;
-          transform: ${({ right }) => (right ? `translateX(-${right} )` : "")};
+          transform: ${({ $right }) =>
+            $right ? `translateX(-${$right} )` : ""};
           transition: transform 1s;
         }
         & > #search_input {
@@ -207,25 +256,43 @@ const Logo = styled.div`
   & > img {
     width: 50%;
     height: 80%;
+    cursor: pointer;
   }
 `;
 
 const PrivateMenu = styled.div`
   width: 30%;
+  height: 80%;
+  display: flex;
+  justify-content: end;
+`;
+
+const User = styled.div`
+  width: 25%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  cursor: pointer;
+  .user_icon {
+    width: 100%;
+    height: 50%;
+  }
+  .user_text {
+    width: 100%;
+    height: 50%;
+    text-align: center;
+  }
+`;
+
+const MenuBar = styled.div`
+  width: 25%;
+  height: 50%;
   display: flex;
   justify-content: end;
 
-  > div {
-    width: 25%;
-    display: flex;
-    align-items: center;
-  }
-  > .menu_bar {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    > .bar {
-      height: 2rem;
-    }
+  .bar {
+    height: 50%;
+    cursor: pointer;
   }
 `;

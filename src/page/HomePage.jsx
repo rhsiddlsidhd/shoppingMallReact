@@ -1,33 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import ContentContainer from "../style/component/ContentContainer";
 import Card from "../style/component/Card";
+import { GetDispatchDataContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
-  const card = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "va",
-    "A",
-    "B",
-    "C",
-    "D",
-    "va",
-    "A",
-    "B",
-    "C",
-    "D",
-    "va",
-  ];
+  const { albums } = useContext(GetDispatchDataContext);
+
+  const navigate = useNavigate();
+
+  const productPageNavi = (id) => {
+    navigate(`/products/${id}`);
+  };
 
   return (
-    <ContentContainer>
+    <ContentContainer display="centeredColumn">
       <NavPreview>NavPreview</NavPreview>
       <CardBox>
-        {card.map((it, index) => (
-          <Card margin="1.5rem" key={index}></Card>
+        {albums.map((data, index) => (
+          <Card
+            $margin="1.5rem"
+            key={index}
+            src={`${data.img}`}
+            onClick={() => productPageNavi(data.id)}
+          >
+            {`${data.new}`}
+            {`${data.choice}`}
+            {`${data.title}`}
+            {`${data.price}`}
+          </Card>
         ))}
       </CardBox>
     </ContentContainer>
@@ -57,5 +59,21 @@ const CardBox = styled.div`
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
+  }
+
+  @media ${({ theme }) => theme.windowSize.lg} {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media ${({ theme }) => theme.windowSize.md} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media ${({ theme }) => theme.windowSize.sm} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media ${({ theme }) => theme.windowSize.sx} {
+    grid-template-columns: repeat(1, 1fr);
   }
 `;

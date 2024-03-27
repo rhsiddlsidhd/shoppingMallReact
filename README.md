@@ -23,7 +23,7 @@ React Router를 사용하여 다양한 라우팅 기능을 이해하고 활용�
 
 ## 📝 앞으로 할 개선 해야 할 방향
 
--
+-styled-components: it looks like an unknown prop "margin" is being sent through to the DOM, which will likely trigger a React console error. If you would like automatic filtering of unknown props, you can opt-into that behavior via `<StyleSheetManager shouldForwardProp={...}>` (connect an API like `@emotion/is-prop-valid`) or consider using transient props (`$` prefix for automatic filtering.)
 
 ## 🥅 Trouble shooting
 

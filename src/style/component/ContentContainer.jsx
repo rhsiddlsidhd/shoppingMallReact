@@ -1,10 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const ContentContainer = ({ children }) => {
+const ContentContainer = ({ children, ...rest }) => {
+  const { display } = rest;
+
   return (
     <Container>
-      <Content>{children}</Content>
+      <Content display={display}>{children}</Content>
     </Container>
   );
 };
@@ -22,7 +24,20 @@ const Content = styled.div`
   width: 90%;
   height: 90%;
   border: 4px solid black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+  ${({ display }) =>
+    display === "centered" &&
+    css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    `}
+
+  ${({ display }) =>
+    display === "centeredColumn" &&
+    css`
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    `}
 `;
