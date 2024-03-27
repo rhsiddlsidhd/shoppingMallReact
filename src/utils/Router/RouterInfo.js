@@ -13,7 +13,9 @@ export const RouterInfo = [
     errorElement: <ErrorPage />,
     loader: async () => {
       try {
-        const url = new URL(`http://localhost:5000/products`);
+        const url = new URL(
+          ` https://my-json-server.typicode.com/rhsiddlsidhd/shoppingMallReact/products`
+        );
         const res = await fetch(url);
 
         if (!res.ok) {
@@ -33,7 +35,9 @@ export const RouterInfo = [
         path: "products/:id",
         loader: async ({ params }) => {
           try {
-            const url = new URL(`http://localhost:5000/products/${params.id}`);
+            const url = new URL(
+              `https://my-json-server.typicode.com/rhsiddlsidhd/shoppingMallReact/products/${params.id}`
+            );
             const res = await fetch(url);
 
             if (!res.ok) {
