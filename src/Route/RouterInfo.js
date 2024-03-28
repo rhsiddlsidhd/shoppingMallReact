@@ -5,15 +5,6 @@ import Main from "../page/Main";
 import ErrorPage from "./ErrorPage";
 import PrivateRoute from "./PrivateRoute";
 
-/**
- * deploy address
- * https://my-json-server.typicode.com/rhsiddlsidhd/shoppingMallReact/products
- *
- * deleloper address
- * http://localhost:5000/products
- *
- */
-
 export const RouterInfo = [
   {
     path: "/",
