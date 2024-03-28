@@ -9,9 +9,9 @@ import PrivateRoute from "./PrivateRoute";
  * deploy address
  * https://my-json-server.typicode.com/rhsiddlsidhd/shoppingMallReact/products
  *
- * filter
- * posts?title=json-server&author=typicode
- * http://localhost:5000/products?title=${kkkk}
+ * deleloper address
+ * http://localhost:5000/products
+ *
  */
 
 export const RouterInfo = [
@@ -24,7 +24,9 @@ export const RouterInfo = [
         const fetchUrl = new URL(request.url);
         const searchTerm = fetchUrl.searchParams.get("q");
         const url = new URL(
-          `http://localhost:5000/products?q=${searchTerm ? searchTerm : ""}`
+          `https://my-json-server.typicode.com/rhsiddlsidhd/shoppingMallReact/products?q=${
+            searchTerm ? searchTerm : ""
+          }`
         );
         const res = await fetch(url);
         if (!res.ok) {
@@ -43,7 +45,9 @@ export const RouterInfo = [
         path: "products/:id",
         loader: async ({ params }) => {
           try {
-            const url = new URL(`http://localhost:5000/products/${params.id}`);
+            const url = new URL(
+              `https://my-json-server.typicode.com/rhsiddlsidhd/shoppingMallReact/products/${params.id}`
+            );
             const res = await fetch(url);
 
             if (!res.ok) {
