@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import ContentContainer from "../style/component/ContentContainer";
-import Card from "../style/component/Card";
-import { GetDispatchDataContext } from "../App";
+import ContentContainer from "../component/common/ContentContainer";
+import Card from "../component/main/Card";
 import { useNavigate } from "react-router-dom";
+import { GetDispatchDataContext } from "../context/context";
 
-const Homepage = () => {
-  const { albums } = useContext(GetDispatchDataContext);
+const Main = () => {
+  const { productsData } = useContext(GetDispatchDataContext);
 
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const Homepage = () => {
     <ContentContainer display="centeredColumn">
       <NavPreview>NavPreview</NavPreview>
       <CardBox>
-        {albums.map((data, index) => (
+        {productsData.map((data, index) => (
           <Card
             $margin="1.5rem"
             key={index}
@@ -35,9 +35,8 @@ const Homepage = () => {
     </ContentContainer>
   );
 };
-//
 
-export default Homepage;
+export default Main;
 
 const NavPreview = styled.div`
   height: 5%;
@@ -49,16 +48,18 @@ const NavPreview = styled.div`
 const CardBox = styled.div`
   width: 90%;
   height: 100%;
-
   display: grid;
-
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   place-items: center;
   grid-auto-flow: row;
   overflow: scroll;
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
+  }
+
+  @media ${({ theme }) => theme.windowSize.xl} {
+    grid-template-columns: repeat(5, 1fr);
   }
 
   @media ${({ theme }) => theme.windowSize.lg} {

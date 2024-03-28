@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import ContentContainer from "../style/component/ContentContainer";
+import ContentContainer from "../component/common/ContentContainer";
 import styled from "styled-components";
-import Button from "../style/component/Button";
+import Button from "../component/common/Button";
 import { useLoaderData } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAnglesDown, faAnglesUp } from "@fortawesome/free-solid-svg-icons";
+import Dropdown from "../component/detail/Dropdown";
 
-const ProductPage = () => {
+const Detail = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const dropdownBtn = () => {
@@ -20,7 +19,6 @@ const ProductPage = () => {
     <ContentContainer display="centered">
       <ProductPageContainer>
         <img src={`${img}`} alt="이미지" />
-
         <div>
           <ProductOption>
             <div>
@@ -39,36 +37,9 @@ const ProductPage = () => {
             <div className="product_price">
               ₩{String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </div>
-            <SizeDropdown>
-              <div className="dropdown_title" onClick={dropdownBtn}>
-                {isOpen === false ? (
-                  <>
-                    <div>사이즈 선택</div>
-                    <div>
-                      <FontAwesomeIcon icon={faAnglesDown} />
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div>사이즈 선택</div>
-                    <div>
-                      <FontAwesomeIcon icon={faAnglesUp} />
-                    </div>
-                  </>
-                )}
-              </div>
-              {isOpen === false ? (
-                <></>
-              ) : (
-                <>
-                  <div className="dropdown_list">
-                    {size.map((it, index) => (
-                      <div key={index}>{it}</div>
-                    ))}
-                  </div>
-                </>
-              )}
-            </SizeDropdown>
+            <Dropdown value={{ dropdownBtn, isOpen, setIsOpen }}>
+              {size}
+            </Dropdown>
             <Button $productext="true">추가</Button>
           </ProductOption>
         </div>
@@ -77,10 +48,10 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+export default Detail;
 
 const ProductPageContainer = styled.div`
-  width: 80%;
+  width: 60%;
   height: 90%;
   display: flex;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -103,6 +74,7 @@ const ProductOption = styled.div`
     height: 90%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex: 0.5;
     .product_choice {
       color: ${({ theme }) => theme.color.deep};
@@ -120,20 +92,18 @@ const ProductOption = styled.div`
   > .product_title {
     font-size: ${({ theme }) => theme.fontSize.xl};
     font-weight: bold;
+    display: flex;
+    align-items: center;
   }
 
   > .product_price {
     font-size: ${({ theme }) => theme.fontSize.lg};
+    display: flex;
+    align-items: center;
   }
 
   > Button {
     flex: 1;
     width: 100%;
-  }
-`;
-
-const SizeDropdown = styled.div`
-  .dropdown_title {
-    display: flex;
   }
 `;

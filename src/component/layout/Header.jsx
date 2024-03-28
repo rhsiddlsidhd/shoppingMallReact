@@ -6,9 +6,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
 import styled, { css } from "styled-components";
-import Button from "../../style/component/Button";
+import Button from "../common/Button";
 import { useNavigate } from "react-router-dom";
-import { GetDispatchDataContext, GetStateDataContext } from "../../App";
+import {
+  GetDispatchDataContext,
+  GetStateDataContext,
+} from "../../context/context";
 
 const Header = () => {
   const { authenticate } = useContext(GetDispatchDataContext);
@@ -31,9 +34,6 @@ const Header = () => {
 
   const [isfocused, setIsFocused] = useState("");
   const [isvalid, setIsValid] = useState("");
-  const [filter, setFilter] = useState("");
-  // filter랑 카드아이템 타일트과 일치하는것만 보여주면 끝
-  console.log(filter);
 
   const navigate = useNavigate();
 
@@ -46,7 +46,8 @@ const Header = () => {
   };
 
   const handleChange = (event) => {
-    setFilter(event.target.value);
+    let keyword = event.target.value;
+    navigate(`/?q=${keyword}`);
     setIsValid(event.target.value !== "");
   };
 
@@ -100,7 +101,6 @@ const Header = () => {
                 </div>
               </User>
             )}
-
             <MenuBar>
               <FontAwesomeIcon icon={faBars} className="bar" />
             </MenuBar>
@@ -132,7 +132,7 @@ const Header = () => {
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 placeholder="제품 검색"
-                onChange={(e) => handleChange(e)}
+                onKeyPress={(e) => handleChange(e)}
                 required
               />
             </label>
@@ -152,7 +152,6 @@ const $displayCenter = css`
 
 const HeaderContainer = styled.header`
   height: 15vh;
-  /* border: 1px solid green; */
   ${$displayCenter}
 `;
 

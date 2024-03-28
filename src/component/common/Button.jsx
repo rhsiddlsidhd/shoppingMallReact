@@ -1,9 +1,17 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const Button = ({ $productext, logintext, children, ...rest }) => {
+const Button = ({ children, ...rest }) => {
+  console.log("rest", rest.$logintext);
+  const { $productext, $logintext, $dropdown } = rest;
+
   return (
-    <BtnStyle {...rest} $logintext={logintext} $productext={$productext}>
+    <BtnStyle
+      {...rest}
+      $logintext={$logintext}
+      $productext={$productext}
+      $dropdown={$dropdown}
+    >
       {children}
     </BtnStyle>
   );
@@ -29,6 +37,15 @@ const BtnStyle = styled.button.attrs((props) => ({
   border: none;
   cursor: pointer;
 
+  &:hover {
+    background-color: ${({ theme }) => theme.color.deep};
+    color: ${({ theme }) => theme.color.light};
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.color.point};
+  }
+
   ${({ $logintext }) =>
     $logintext === "true" &&
     css`
@@ -41,12 +58,20 @@ const BtnStyle = styled.button.attrs((props) => ({
       font-size: ${({ theme }) => theme.fontSize.xl};
     `}
 
-  &:hover {
-    background-color: ${({ theme }) => theme.color.deep};
-    color: ${({ theme }) => theme.color.light};
-  }
-
-  &:active {
-    background-color: ${({ theme }) => theme.color.point};
-  }
+    ${({ $dropdown }) =>
+    $dropdown === "true" &&
+    css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      > div {
+        padding-right: 0.3rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+      > .dropIcon {
+        width: 10%;
+      }
+    `}
 `;

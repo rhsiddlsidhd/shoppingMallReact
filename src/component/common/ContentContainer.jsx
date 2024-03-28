@@ -2,8 +2,9 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 const ContentContainer = ({ children, ...rest }) => {
+  console.log("rest", rest);
   const { display } = rest;
-
+  console.log(display);
   return (
     <Container>
       <Content display={display}>{children}</Content>
@@ -23,7 +24,6 @@ const Container = styled.section`
 const Content = styled.div`
   width: 90%;
   height: 90%;
-  border: 4px solid black;
 
   ${({ display }) =>
     display === "centered" &&

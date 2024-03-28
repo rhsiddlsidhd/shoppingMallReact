@@ -20,10 +20,17 @@ React Router를 사용하여 다양한 라우팅 기능을 이해하고 활용�
 
 - **24-03-25** 폴더 구조 및 프로젝트에 반복하여 사용 될 컴포넌트 앞서서 UI를 구현
 - **24-03-26** Json-server 데이터 입력 및 BrowserRouter 대신 v6 버전에서 권장하는 createbrowerRouter 사용하여 데이터 불러오기
+- **24-03-27**
+  Home 데이터 및 UI 완료
+  상세 페이지 Parmas.id 받아 데이터 및 UI 완료
+  로그인 로그아웃 구현 완료
+  페이지간 navigate 완료
 
 ## 📝 앞으로 할 개선 해야 할 방향
 
--styled-components: it looks like an unknown prop "margin" is being sent through to the DOM, which will likely trigger a React console error. If you would like automatic filtering of unknown props, you can opt-into that behavior via `<StyleSheetManager shouldForwardProp={...}>` (connect an API like `@emotion/is-prop-valid`) or consider using transient props (`$` prefix for automatic filtering.)
+- styled-components: it looks like an unknown prop "margin" is being sent through to the DOM, which will likely trigger a React console error. If you would like automatic filtering of unknown props, you can opt-into that behavior via `<StyleSheetManager shouldForwardProp={...}>` (connect an API like `@emotion/is-prop-valid`) or consider using transient props (`$` prefix for automatic filtering.)
+
+- URLSearchParams https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
 
 ## 🥅 Trouble shooting
 

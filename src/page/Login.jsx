@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import ContentContainer from "../style/component/ContentContainer";
+import ContentContainer from "../component/common/ContentContainer";
 import { styled } from "styled-components";
-import Button from "../style/component/Button";
-import { GetStateDataContext } from "../App";
+import Button from "../component/common/Button";
 import { useNavigate } from "react-router-dom";
+import { GetStateDataContext } from "../context/context";
 
-const LoginPage = () => {
+const Login = () => {
   const setAuthenticate = useContext(GetStateDataContext);
 
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const LoginPage = () => {
             <div>아이디</div>
             <div>회원가입</div>
           </div>
-          <Button width="100%" height="45%" logintext="true" type="submit">
+          <Button width="100%" height="45%" $logintext="true" type="submit">
             Login
           </Button>
         </form>
@@ -38,7 +38,7 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
 
 const LoginContainer = styled.div`
   width: 50%;

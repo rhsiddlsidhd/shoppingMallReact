@@ -3,6 +3,7 @@ const windowSize = {
   sm: "screen and (max-width: 800px)",
   md: "screen and (max-width: 1050px)",
   lg: "screen and (max-width: 1300px)",
+  xl: "screen and (max-width: 1550px)",
 };
 
 const color = {
