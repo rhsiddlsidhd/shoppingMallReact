@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../common/Button";
-import { faAnglesDown, faAnglesUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Dropdown = ({ children, ...rest }) => {
@@ -18,23 +17,25 @@ const Dropdown = ({ children, ...rest }) => {
   return (
     <DropdownContainer>
       <Button width="30%" $dropdown="true" onClick={dropdownBtn}>
-        <div>{selectSize ? selectSize : "사이즈 선택"}</div>
+        <div>{selectSize ? selectSize : rest.title}</div>
         {isOpen === false ? (
-          <FontAwesomeIcon icon={faAnglesDown} className="dropIcon" />
+          <FontAwesomeIcon icon={rest.downIcon} className="dropIcon" />
         ) : isSelect ? null : (
-          <FontAwesomeIcon icon={faAnglesUp} />
+          <FontAwesomeIcon icon={rest.upIcon} className="dropIcon" />
         )}
       </Button>
       {isOpen === false ? (
         <></>
       ) : (
-        <DropContent>
-          {children.map((it, index) => (
-            <div key={index} onClick={() => handleItemClick(it)}>
-              {it}
-            </div>
-          ))}
-        </DropContent>
+        <>
+          <DropContent>
+            {children.map((it, index) => (
+              <div key={index} onClick={() => handleItemClick(it)}>
+                {it}
+              </div>
+            ))}
+          </DropContent>
+        </>
       )}
     </DropdownContainer>
   );
@@ -43,10 +44,13 @@ const Dropdown = ({ children, ...rest }) => {
 export default Dropdown;
 const DropdownContainer = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
 `;
 
 const DropContent = styled.div`
   position: absolute;
+  top: 70%;
   width: 30%;
   background-color: transparent;
   border-radius: 10px;

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Button from "../component/common/Button";
 import { useLoaderData } from "react-router-dom";
 import Dropdown from "../component/detail/Dropdown";
+import { faAnglesDown, faAnglesUp } from "@fortawesome/free-solid-svg-icons";
 
 const Detail = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +38,12 @@ const Detail = () => {
             <div className="product_price">
               ₩{String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </div>
-            <Dropdown value={{ dropdownBtn, isOpen, setIsOpen }}>
+            <Dropdown
+              value={{ dropdownBtn, isOpen, setIsOpen }}
+              title="사이즈 선택"
+              upIcon={faAnglesUp}
+              downIcon={faAnglesDown}
+            >
               {size}
             </Dropdown>
             <Button $productext="true">추가</Button>
