@@ -10,17 +10,8 @@ const BottomHeader = ({
   isfocused,
   isvalid,
   navigate,
+  menulist,
 }) => {
-  const menulist = [
-    "Women",
-    "Men",
-    "Baby",
-    "H&M Home",
-    "Sport",
-    "Sale",
-    "지속가능성",
-  ];
-
   const handleFocus = () => {
     setIsFocused("focus");
   };
@@ -40,7 +31,7 @@ const BottomHeader = ({
       <div></div>
       <div className="navbar">
         {menulist.map((it, index) => (
-          <Button width="fit-content" key={index} $margin="0.3rem">
+          <Button width="fit-content" $margin="0.5rem" key={index}>
             {it}
           </Button>
         ))}
@@ -70,7 +61,7 @@ const Bottom = styled.div.attrs((props) => ({
   ...props,
   $right: props.$right || "",
 }))`
-  height: 20%;
+  height: 25%;
   display: flex;
   justify-content: space-between;
   > div:first-child {
@@ -82,15 +73,14 @@ const Bottom = styled.div.attrs((props) => ({
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
     overflow: hidden;
     &:hover {
       display: flex;
-      width: 40%;
       height: fit-content;
-      background-color: white;
+      width: 40%;
       z-index: 1;
+      background-color: ${({ theme }) => theme.color.white};
     }
   }
 
@@ -138,6 +128,17 @@ const Bottom = styled.div.attrs((props) => ({
           border-bottom: 1px solid black;
         }
       }
+    }
+  }
+
+  @media screen and (max-height: 1050px) {
+    .navbar {
+      display: none;
+    }
+  }
+  @media ${({ theme }) => theme.windowSize.sm} {
+    #search_input::placeholder {
+      color: transparent;
     }
   }
 `;

@@ -1,4 +1,4 @@
-import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faRightFromBracket, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext } from "react";
 import styled, { css } from "styled-components";
@@ -6,8 +6,9 @@ import {
   GetDispatchDataContext,
   GetStateDataContext,
 } from "../../../context/context";
+import Button from "../../common/Button";
 
-const TopHeader = ({ navigate }) => {
+const TopHeader = ({ navigate, menulist }) => {
   const { authenticate } = useContext(GetDispatchDataContext);
   const setAuthenticate = useContext(GetStateDataContext);
 
@@ -26,6 +27,7 @@ const TopHeader = ({ navigate }) => {
       setAuthenticate(true);
     }
   };
+
   return (
     <Top className="high">
       <div></div>
@@ -38,29 +40,42 @@ const TopHeader = ({ navigate }) => {
       </Logo>
       <PrivateMenu>
         {authenticate === true ? (
-          <User onClick={logout}>
-            <FontAwesomeIcon icon={faUser} className="user_icon" />
-            <div
-              className="user_text"
-              style={{ display: "inline", marginLeft: "1rem" }}
-            >
-              로그아웃
+          <User>
+            <div>
+              <FontAwesomeIcon
+                icon={faRightFromBracket}
+                className="user_icon"
+                onClick={logout}
+              />
+            </div>
+            <div className="user_text">
+              <div onClick={logout}>로그아웃</div>
             </div>
           </User>
         ) : (
-          <User onClick={navigateLoginPage}>
-            <FontAwesomeIcon icon={faUser} className="user_icon" />
-            <div
-              className="user_text"
-              style={{ display: "inline", marginLeft: "1rem" }}
-            >
-              로그인
+          <User>
+            <div>
+              <FontAwesomeIcon
+                icon={faUser}
+                className="user_icon"
+                onClick={navigateLoginPage}
+              />
+            </div>
+            <div className="user_text">
+              <div onClick={navigateLoginPage}>로그인</div>
             </div>
           </User>
         )}
-        <MenuBar>
-          <FontAwesomeIcon icon={faBars} className="bar" />
-        </MenuBar>
+
+        <SideBar>
+          <SideBarItemContainer>
+            {menulist.map((it, index) => (
+              <Button $sidebar="true" width="7rem" $margin="0.5rem" key={index}>
+                {it}
+              </Button>
+            ))}
+          </SideBarItemContainer>
+        </SideBar>
       </PrivateMenu>
     </Top>
   );
@@ -74,7 +89,7 @@ const $displayCenter = css`
 `;
 
 const Top = styled.div`
-  height: 80%;
+  height: 75%;
   ${$displayCenter}
   justify-content:space-between;
   > div:first-child {
@@ -104,31 +119,68 @@ const PrivateMenu = styled.div`
 `;
 
 const User = styled.div`
-  width: 25%;
   height: 50%;
   display: flex;
   flex-direction: column;
   align-items: end;
-  cursor: pointer;
-  .user_icon {
+  > div:first-child {
     width: 100%;
     height: 50%;
+    display: flex;
+    justify-content: center;
   }
+  .user_icon {
+    width: fit-content;
+    height: 100%;
+    cursor: pointer;
+  }
+
   .user_text {
     width: 100%;
     height: 50%;
-    text-align: center;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    > div {
+      width: fit-content;
+      cursor: pointer;
+    }
+  }
+  @media ${({ theme }) => theme.windowSize.md} {
+    .user_text {
+      display: none;
+    }
   }
 `;
 
-const MenuBar = styled.div`
-  width: 25%;
-  height: 50%;
-  display: flex;
-  justify-content: end;
+const SideBar = styled.div`
+  width: 10rem;
+  height: 60%;
+  position: fixed;
+  top: 25%;
+  right: -9rem;
+  display: none;
+  border: 1px solid black;
+  z-index: 1;
+  border-radius: 10px 0 0 10px;
+  background-color: white;
 
-  .bar {
-    height: 50%;
-    cursor: pointer;
+  &:hover {
+    right: 0;
+  }
+
+  @media screen and (max-height: 1050px) {
+    display: flex;
+  }
+`;
+
+const SideBarItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
   }
 `;

@@ -2,8 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 const Button = ({ children, ...rest }) => {
-  console.log("rest", rest.$logintext);
-  const { $productext, $logintext, $dropdown } = rest;
+  const { $productext, $logintext, $dropdown, $sidebar } = rest;
 
   return (
     <BtnStyle
@@ -11,6 +10,7 @@ const Button = ({ children, ...rest }) => {
       $logintext={$logintext}
       $productext={$productext}
       $dropdown={$dropdown}
+      $sidebar={$sidebar}
     >
       {children}
     </BtnStyle>
@@ -21,13 +21,14 @@ export default Button;
 
 const BtnStyle = styled.button.attrs((props) => ({
   ...props,
-  width: props.width ? props.width : "3rem",
-  height: props.height ? props.height : "2rem",
+  $width: props.width ? props.width : "3rem",
+  $height: props.height ? props.height : "2rem",
   $margin: props.$margin ? props.$margin : "",
 }))`
-  height: ${({ height }) => height};
-  width: ${({ width }) => width};
+  height: ${({ $height }) => $height};
+  width: ${({ $width }) => $width};
   margin: ${({ $margin }) => $margin};
+
   background-color: ${({ theme }) => theme.color.light};
   color: ${({ theme }) => theme.color.point};
 
@@ -73,5 +74,14 @@ const BtnStyle = styled.button.attrs((props) => ({
       > .dropIcon {
         width: 10%;
       }
+    `}
+
+    ${({ $sidebar }) =>
+    $sidebar === "true" &&
+    css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
     `}
 `;

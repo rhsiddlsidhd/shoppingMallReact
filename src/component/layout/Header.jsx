@@ -9,16 +9,37 @@ const Header = () => {
   const [isvalid, setIsValid] = useState("");
   const navigate = useNavigate();
 
+  const menulist = [
+    "Women",
+    "Men",
+    "Baby",
+    "H&M Home",
+    "Sport",
+    "Sale",
+    "지속가능성",
+    "H&M Home",
+    "Sport",
+    "Sale",
+    "지속가능성",
+    "Sale",
+    "지속가능성",
+    "H&M Home",
+    "Sport",
+    "Sale",
+    "지속가능성",
+  ];
+
   return (
     <HeaderContainer>
       <HeaderItem>
-        <TopHeader navigate={navigate} />
+        <TopHeader navigate={navigate} menulist={menulist} />
         <BottomHeader
           setIsFocused={setIsFocused}
           setIsValid={setIsValid}
           isvalid={isvalid}
           isfocused={isfocused}
           navigate={navigate}
+          menulist={menulist}
         />
       </HeaderItem>
     </HeaderContainer>
@@ -31,6 +52,7 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 150px;
 `;
 
 const HeaderItem = styled.div`

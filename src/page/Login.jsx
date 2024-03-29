@@ -41,7 +41,7 @@ const Login = () => {
 export default Login;
 
 const LoginContainer = styled.div`
-  width: 50%;
+  width: 30%;
   height: 40%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 10px;
@@ -93,5 +93,26 @@ const LoginContainer = styled.div`
         }
       }
     }
+  }
+
+  @media ${({ theme }) => theme.windowSize.xl} {
+    width: 40%;
+    height: 40%;
+  }
+  @media ${({ theme }) => theme.windowSize.lg} {
+    width: 45%;
+    height: 40%;
+  }
+  @media ${({ theme }) => theme.windowSize.md} {
+    width: 50%;
+    height: 40%;
+  }
+  @media ${({ theme }) => theme.windowSize.sm} {
+    width: 60%;
+    height: 40%;
+  }
+  @media ${({ theme }) => theme.windowSize.sx} {
+    width: 65%;
+    height: 40%;
   }
 `;
