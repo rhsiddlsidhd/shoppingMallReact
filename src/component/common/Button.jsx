@@ -27,6 +27,9 @@ const BtnStyle = styled.button.attrs((props) => ({
 }))`
   height: ${({ $height }) => $height};
   width: ${({ $width }) => $width};
+  @media ${({ theme }) => theme.windowSize.lg} {
+    width: 100%;
+  }
   margin: ${({ $margin }) => $margin};
 
   background-color: ${({ theme }) => theme.color.light};

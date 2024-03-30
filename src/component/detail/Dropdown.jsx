@@ -16,7 +16,7 @@ const Dropdown = ({ children, ...rest }) => {
 
   return (
     <DropdownContainer>
-      <Button width="30%" $dropdown="true" onClick={dropdownBtn}>
+      <Button width="40%" $dropdown="true" onClick={dropdownBtn}>
         <div>{selectSize ? selectSize : rest.title}</div>
         {isOpen === false ? (
           <FontAwesomeIcon icon={rest.downIcon} className="dropIcon" />
@@ -46,15 +46,22 @@ const DropdownContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  @media ${({ theme }) => theme.windowSize.lg} {
+    width: 40%;
+  }
 `;
 
 const DropContent = styled.div`
   position: absolute;
-  top: 70%;
-  width: 30%;
+  top: 90%;
+  width: 40%;
   background-color: transparent;
   border-radius: 10px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  @media ${({ theme }) => theme.windowSize.lg} {
+    width: 100%;
+  }
+
   & > div {
     display: flex;
     justify-content: center;
