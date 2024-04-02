@@ -8,7 +8,6 @@ function authenticateReducer(state = initialState, action) {
   let { type, payload } = action;
   switch (type) {
     case "LOGIN_SUCCESS":
-      console.log("login");
       return {
         ...state,
         id: payload.id,

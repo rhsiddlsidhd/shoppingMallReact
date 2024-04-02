@@ -25,21 +25,8 @@ export const RouterInfo = [
       {
         path: "products/:id",
         loader: async ({ params }) => {
-          try {
-            const url = new URL(
-              `https://my-json-server.typicode.com/rhsiddlsidhd/shoppingMallReact/products/${params.id}`
-            );
-            const res = await fetch(url);
-
-            if (!res.ok) {
-              throw new Error(`${res.status} =====> ${res.statusText}`);
-            }
-
-            const data = await res.json();
-            return data;
-          } catch (err) {
-            console.error(err);
-          }
+          store.dispatch(productAction.getProductDetail(params));
+          return null;
         },
         element: <PrivateRoute />,
       },

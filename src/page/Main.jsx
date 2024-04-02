@@ -18,7 +18,7 @@ const Main = () => {
     <ContentContainer display="centeredColumn">
       <NavPreview>NavPreview</NavPreview>
       <CardBox>
-        {productsData.map((data, index) => (
+        {productsData?.map((data, index) => (
           <Card
             $margin="1.5rem"
             key={index}

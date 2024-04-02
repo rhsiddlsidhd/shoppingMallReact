@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import ContentContainer from "../component/common/ContentContainer";
 import styled from "styled-components";
 import Button from "../component/common/Button";
-import { useLoaderData } from "react-router-dom";
 import Dropdown from "../component/detail/Dropdown";
 import { faAnglesDown, faAnglesUp } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 
 const Detail = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,8 +12,8 @@ const Detail = () => {
   const dropdownBtn = () => {
     setIsOpen(!isOpen);
   };
+  const data = useSelector((state) => state.product.selectItem);
 
-  const data = useLoaderData();
   const { choice, img, price, size, title } = data;
 
   return (
