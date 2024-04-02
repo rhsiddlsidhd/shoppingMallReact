@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import ContentContainer from "../component/common/ContentContainer";
 import Card from "../component/main/Card";
 import { useNavigate } from "react-router-dom";
-import { GetDispatchDataContext } from "../context/context";
+import { useSelector } from "react-redux";
 
 const Main = () => {
-  const { productsData } = useContext(GetDispatchDataContext);
+  const productsData = useSelector((state) => state.product.productList);
 
   const navigate = useNavigate();
 

@@ -1,23 +1,17 @@
-import { Outlet, useLoaderData } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import "./App.css";
 import Header from "./component/layout/Header";
-import { useState } from "react";
-import { GetDispatchDataContext, GetStateDataContext } from "./context/context";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [authenticate, setAuthenticate] = useState(false);
-
-  const productsData = useLoaderData();
+  const $authenticate = useSelector((state) => state.auth.authenticate);
+  console.log({ $authenticate });
 
   return (
-    <GetDispatchDataContext.Provider value={{ productsData, authenticate }}>
-      <GetStateDataContext.Provider value={setAuthenticate}>
-        <div className="App">
-          <Header />
-          <Outlet />
-        </div>
-      </GetStateDataContext.Provider>
-    </GetDispatchDataContext.Provider>
+    <div className="App">
+      <Header />
+      <Outlet />
+    </div>
   );
 }
 

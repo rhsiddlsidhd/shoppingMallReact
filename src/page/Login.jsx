@@ -1,19 +1,22 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import ContentContainer from "../component/common/ContentContainer";
 import { styled } from "styled-components";
 import Button from "../component/common/Button";
 import { useNavigate } from "react-router-dom";
-import { GetStateDataContext } from "../context/context";
+import { useDispatch } from "react-redux";
+import { authenticateAction } from "../redux/actions/authenciateAction";
 
 const Login = () => {
-  const setAuthenticate = useContext(GetStateDataContext);
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
   const loginUser = (e) => {
     e.preventDefault();
     navigate("/");
-    setAuthenticate(true);
+    dispatch(authenticateAction.login(id, password));
   };
 
   return (
@@ -22,8 +25,16 @@ const Login = () => {
         <div>Login</div>
         <form onSubmit={(e) => loginUser(e)}>
           <div className="input_option">
-            <input type="text" placeholder="아이디"></input>
-            <input type="password" placeholder="비밀번호"></input>
+            <input
+              type="text"
+              placeholder="아이디"
+              onChange={(e) => setId(e.target.value)}
+            ></input>
+            <input
+              type="password"
+              placeholder="비밀번호"
+              onChange={(e) => setPassword(e.target.value)}
+            ></input>
           </div>
           <div className="user_option">
             <div>아이디</div>

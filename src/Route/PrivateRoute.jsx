@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
 import Detail from "./../page/Detail";
-import { GetDispatchDataContext } from "../context/context";
+
+import { useSelector } from "react-redux";
 
 const PrivateRoute = () => {
-  const { authenticate } = useContext(GetDispatchDataContext);
+  const authenticate = useSelector((state) => state.auth.authenticate);
 
   return authenticate === true ? <Detail /> : <Navigate to="/login" />;
 };

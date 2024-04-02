@@ -1,16 +1,16 @@
 import { faRightFromBracket, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
-import {
-  GetDispatchDataContext,
-  GetStateDataContext,
-} from "../../../context/context";
+
 import Button from "../../common/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { authenticateAction } from "../../../redux/actions/authenciateAction";
 
 const TopHeader = ({ navigate, menulist }) => {
-  const { authenticate } = useContext(GetDispatchDataContext);
-  const setAuthenticate = useContext(GetStateDataContext);
+  const authenticate = useSelector((state) => state.auth.authenticate);
+
+  const dispatch = useDispatch();
 
   const navigateLoginPage = () => {
     navigate("/login");
@@ -22,9 +22,7 @@ const TopHeader = ({ navigate, menulist }) => {
 
   const logout = () => {
     if (window.confirm("로그아웃 하시겠습니까?")) {
-      setAuthenticate(false);
-    } else {
-      setAuthenticate(true);
+      dispatch(authenticateAction.logout());
     }
   };
 
