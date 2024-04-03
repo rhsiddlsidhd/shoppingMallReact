@@ -4,8 +4,11 @@ import Login from "../page/Login";
 import Main from "../page/Main";
 import ErrorPage from "./ErrorPage";
 import PrivateRoute from "./PrivateRoute";
-import { productAction } from "../redux/actions/productAction";
 import { store } from "../redux/store";
+import {
+  fetchAllProduct,
+  fetchSingleProduct,
+} from "../redux/reducers/productSlice";
 
 export const RouterInfo = [
   {
@@ -15,7 +18,8 @@ export const RouterInfo = [
     loader: ({ request }) => {
       const fetchUrl = new URL(request.url);
       const searchTerm = fetchUrl.searchParams.get("q");
-      store.dispatch(productAction.getProducts(searchTerm));
+      store.dispatch(fetchAllProduct(searchTerm));
+      //null 값을 리턴할게 아니라 productSlice.initialState 값을 가져와야하네
       return null;
     },
 
@@ -25,7 +29,7 @@ export const RouterInfo = [
       {
         path: "products/:id",
         loader: async ({ params }) => {
-          store.dispatch(productAction.getProductDetail(params));
+          store.dispatch(fetchSingleProduct(params));
           return null;
         },
         element: <PrivateRoute />,

@@ -1,9 +1,7 @@
-import { applyMiddleware, createStore } from "redux";
-import { thunk } from "redux-thunk";
-import rootReducer from "./reducers/index";
-import { composeWithDevTools } from "@redux-devtools/extension";
+import { configureStore } from "@reduxjs/toolkit";
+import authenciateSlice from "./reducers/authenciateSlice";
+import productSlice from "./reducers/productSlice";
 
-export const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+export const store = configureStore({
+  reducer: { auth: authenciateSlice, product: productSlice },
+});

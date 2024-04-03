@@ -2,10 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import ContentContainer from "../component/common/ContentContainer";
 import Card from "../component/main/Card";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Main = () => {
+  // router loadData 로 데이터 가져와야함
+  const albums = useLoaderData();
+  console.log("routerData", albums);
+
   const productsData = useSelector((state) => state.product.productList);
 
   const navigate = useNavigate();

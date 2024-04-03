@@ -5,7 +5,7 @@ import styled, { css } from "styled-components";
 
 import Button from "../../common/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { authenticateAction } from "../../../redux/actions/authenciateAction";
+import { logoutUser } from "../../../redux/reducers/authenciateSlice";
 
 const TopHeader = ({ navigate, menulist }) => {
   const authenticate = useSelector((state) => state.auth.authenticate);
@@ -22,7 +22,7 @@ const TopHeader = ({ navigate, menulist }) => {
 
   const logout = () => {
     if (window.confirm("로그아웃 하시겠습니까?")) {
-      dispatch(authenticateAction.logout());
+      dispatch(logoutUser());
     }
   };
 

@@ -4,7 +4,8 @@ import { styled } from "styled-components";
 import Button from "../component/common/Button";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { authenticateAction } from "../redux/actions/authenciateAction";
+import { loginSuccess } from "../redux/reducers/authenciateSlice";
+// import { authenticateAction } from "../redux/actions/authenciateAction";
 
 const Login = () => {
   const [id, setId] = useState("");
@@ -16,7 +17,8 @@ const Login = () => {
   const loginUser = (e) => {
     e.preventDefault();
     navigate("/");
-    dispatch(authenticateAction.login(id, password));
+    // dispatch(authenticateAction.login(id, password));
+    dispatch(loginSuccess({ id: id, password: password }));
   };
 
   return (
